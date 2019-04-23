@@ -11,7 +11,8 @@ import { map, startWith } from 'rxjs/operators';
 
 export class DynamicFormComponent implements OnInit {
   
-  @Input() dynamicForm: {};
+  @Input() dynamicForm: any;
+  @Input() parentScope:any;
   public dynamicGroup:FormGroup;
   private formSubmitAttempt: boolean;
  
@@ -29,6 +30,9 @@ export class DynamicFormComponent implements OnInit {
     this.formSubmitAttempt = true;
     if (form.valid) {
       console.log(form.value);
+      if(this.parentScope!=undefined&&this.parentScope.onFormSubmit!=undefined){
+        this.parentScope.onFormSubmit(form.value);
+      }
     } else {
       // validate all form fields
       this.validateAllFormFields(form);

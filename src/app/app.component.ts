@@ -9,6 +9,7 @@ export class AppComponent  {
     constructor() { }
   
   FormFields={};
+  results:any;
   
   ngOnInit() {
    
@@ -69,5 +70,8 @@ export class AppComponent  {
       ]
     };
   }
+   onFormSubmit(form: any) {
+    this.results= JSON.stringify(form);
+   }
   
 }
